@@ -1,0 +1,27 @@
+@mixin flex() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin absolut() {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin absolutCentr() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin center {
+  margin: 0 auto;
+}
+
+@mixin transition() {
+  transition: all 0.2s ease;
+}
