@@ -1,0 +1,14 @@
+@import '../../styles/var.scss';
+@import '../../styles/mixins.scss';
+
+.nav {
+  @include flex;
+  justify-content: space-between;
+  padding: 10px;
+
+  &__group {
+    @include flex;
+    gap: 15px;
+    margin-right: 5px;
+  }
+}

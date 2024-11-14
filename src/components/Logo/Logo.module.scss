@@ -1,0 +1,19 @@
+@import '../../styles/var.scss';
+@import '../../styles/mixins.scss';
+
+.logo {
+  @include flex;
+  gap: 5px;
+  &__img {
+    width: clamp(2.5rem, 2.375rem + 0.63vw, 3.125rem);
+    height: clamp(2.5rem, 2.375rem + 0.63vw, 3.125rem);
+  }
+
+  &__name {
+    color: var(--tc-main);
+    font-family: var(--ff-sora);
+    font-weight: 500;
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
+    line-height: 2rem;
+  }
+}

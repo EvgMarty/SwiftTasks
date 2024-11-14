@@ -1,19 +1,33 @@
 :root {
   /* Light mode */
-  --tc-main: #0b132b;
+  --tc-main: #181818;
 
-  --bg-main: #edf6f9;
+  --bg-main: #fafafa;
 
-  
+  // Font famali
   --ff-sora: 'Sora', sans-serif;
   --ff-poppins: 'Poppins', sans-serif;
+
+  // btn black
+  --btn-c-black: #edf6f9;
+  --btn-bg-black: #181818;
+  --btn-g-h-black: #282828;
+
+  --btn-c-white: #181818;
+  --btn-bg-white: #fafafa;
+  --btn-g-h-white: #e3e3e3;
+
+  --bor-radius: 0.75rem;
+
+  // btn black white
 }
 
 // /* Dark mode */
 // [data-theme='dark'] {
-//   --text-color: #fff;
-//   --pageBg: #141221;
-//   --text-menu: #3a5a40;
-//   --menuBg: #201d31;
-//   --borderBottom: #8378d5;
+// btn black
+// --btn-c-black: #edf6f9;
+// --btn-bg-black: #181818;
+// --btn-g-h-black: #282828;
+// --bor-radius: 0.75rem;
+
 // }

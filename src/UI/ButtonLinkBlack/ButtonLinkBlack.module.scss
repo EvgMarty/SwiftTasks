@@ -1,0 +1,23 @@
+@import '../../styles/var.scss';
+@import '../../styles/mixins.scss';
+
+.btnLink__black {
+  @include flex;
+  @include transition;
+  padding: 7px 13px;
+  gap: 8px;
+
+  color: var(--btn-c-black) !important;
+  background-color: var(--btn-bg-black);
+  border: 1px solid var(--btn-g-h-black);
+
+  border-radius: var(--bor-radius);
+
+  font-family: var(--ff-sora);
+  font-size: clamp(0.688rem, 0.65rem + 0.19vw, 0.875rem);
+  line-height: 1.25rem;
+
+  &:hover {
+    background-color: var(--btn-g-h-black);
+  }
+}
