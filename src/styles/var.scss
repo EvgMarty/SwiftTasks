@@ -1,33 +1,34 @@
 :root {
   /* Light mode */
-  --tc-main: #181818;
+  --tc-main: #f8f9fa;
+  --tc-gray: #9d9d9d;
 
-  --bg-main: #fafafa;
+  --bg-main: #1b263b;
+  --bg-header: #20202380;
+  --tc-accent: #219ebc;
 
   // Font famali
   --ff-sora: 'Sora', sans-serif;
   --ff-poppins: 'Poppins', sans-serif;
 
   // btn black
-  --btn-c-black: #edf6f9;
+  --btn-c-black: #f8f9fa;
   --btn-bg-black: #181818;
-  --btn-g-h-black: #282828;
+  --btn-g-h-black: #262626;
 
   --btn-c-white: #181818;
-  --btn-bg-white: #fafafa;
+  --btn-bg-white: #f8f9fa;
   --btn-g-h-white: #e3e3e3;
 
   --bor-radius: 0.75rem;
 
-  // btn black white
+  // adaptation
+  --mobile: 480;
+  --tablet-t: 768;
+  --large-desktop: 1200;
 }
 
 // /* Dark mode */
 // [data-theme='dark'] {
-// btn black
-// --btn-c-black: #edf6f9;
-// --btn-bg-black: #181818;
-// --btn-g-h-black: #282828;
-// --bor-radius: 0.75rem;
 
 // }

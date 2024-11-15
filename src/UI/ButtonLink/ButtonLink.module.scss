@@ -1,0 +1,44 @@
+@import '../../styles/var.scss';
+@import '../../styles/mixins.scss';
+
+.btnLink {
+  @include flex;
+  @include transition;
+  padding: 10px 15px;
+  gap: 8px;
+
+  @media (max-width: 700px) {
+    padding: 7px 12px;
+  }
+
+  border-radius: var(--bor-radius);
+
+  font-family: var(--ff-sora);
+  font-size: clamp(0.75rem, 0.7rem + 0.25vw, 1rem);
+  line-height: 1.25rem;
+
+  color: var(--btn-c-black) !important;
+  background-color: var(--btn-bg-black);
+  border: 1px solid var(--btn-g-h-black);
+
+  &:hover {
+    background-color: var(--btn-g-h-black);
+  }
+}
+
+.white {
+  color: var(--btn-c-white) !important;
+  background-color: var(--btn-bg-white);
+  border: 1px solid var(--btn-g-h-white);
+
+  &:hover {
+    background-color: var(--btn-g-h-white);
+  }
+}
+
+.gradient {
+  &:hover {
+    color: var(--btn-c-white) !important;
+    background-color: var(--btn-g-h-white);
+  }
+}

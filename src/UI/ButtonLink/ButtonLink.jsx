@@ -1,19 +1,20 @@
 import { Link } from 'react-router-dom';
-import style from './ButtonLinkBlack.module.scss';
+import style from './ButtonLink.module.scss';
 
-const ButtonLinkBlack = ({
+const ButtonLink = ({
   children,
   onClick,
   title,
   link,
+  variant,
   disabled = false,
 }) => {
   return (
     <Link
-      className={style.btnLink__black}
+      className={`${style.btnLink} ${style[variant]}`}
       to={link}
       title={title}
-      disabled={disabled}
+      aria-disabled={disabled}
       onClick={onClick}
     >
       {children}
@@ -21,4 +22,4 @@ const ButtonLinkBlack = ({
   );
 };
 
-export default ButtonLinkBlack;
+export default ButtonLink;

@@ -1,4 +1,12 @@
-.container {
-  max-width: 1440px;
-  margin: 0 auto;
+.header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+}
+
+.lending {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

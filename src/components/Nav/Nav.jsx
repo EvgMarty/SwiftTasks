@@ -1,5 +1,4 @@
-import ButtonLinkBlack from '../../UI/ButtonLinkBlack/ButtonLinkBlack';
-import ButtonLinkWhite from '../../UI/ButtonLinkWhite/ButtonLinkWhite';
+import ButtonLink from '../../UI/ButtonLink/ButtonLink';
 import Logo from '../Logo/Logo';
 import styles from './Nav.module.scss';
 
@@ -8,8 +7,8 @@ const Nav = () => {
     <nav className={styles.nav}>
       <Logo />
       <div className={styles.nav__group}>
-        <ButtonLinkBlack>Login</ButtonLinkBlack>
-        <ButtonLinkWhite>Sign Up</ButtonLinkWhite>
+        <ButtonLink>Login</ButtonLink>
+        <ButtonLink variant="white">Sign Up</ButtonLink>
       </div>
     </nav>
   );
