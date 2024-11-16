@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FiArrowUpRight } from 'react-icons/fi';
+import { ROUTES } from '../../routes/routes';
 import ButtonLink from '../../UI/ButtonLink/ButtonLink';
 import styles from './SwiftPresentation.module.scss';
 
@@ -26,7 +27,7 @@ const SwiftPresentation = () => {
         Free tool for managing
         <span className={styles.text__gray}> plans and projects.</span>
       </p>
-      <ButtonLink variant="gradient">
+      <ButtonLink link={ROUTES.SIGN_UP} variant="gradient">
         Get Started <FiArrowUpRight className={styles.icon} />
       </ButtonLink>
     </section>

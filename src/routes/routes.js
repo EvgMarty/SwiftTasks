@@ -1,6 +1,7 @@
 export const ROUTES = {
   MAIN: '/',
-  AUTHORIZATION: 'authorization',
+  SIGN_IN: 'sign-in',
+  SIGN_UP: 'sign-up',
   APP: 'app',
   NOTFOUND: '*',
 };

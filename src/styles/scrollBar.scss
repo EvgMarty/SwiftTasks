@@ -1,15 +1,14 @@
 @import '../styles/var.scss';
 
 ::-webkit-scrollbar {
-  height: 4px;
-  width: 4px;
+  height: 8px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--footerColor);
+  background: var(--bg-main);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--hoverLink);
-  border-radius: 6px;
+  background: #3a3a3a;
 }

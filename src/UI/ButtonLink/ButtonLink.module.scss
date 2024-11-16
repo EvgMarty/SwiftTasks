@@ -4,12 +4,10 @@
 .btnLink {
   @include flex;
   @include transition;
-  padding: 10px 15px;
+  padding: 7px 12px;
   gap: 8px;
 
-  @media (max-width: 700px) {
-    padding: 7px 12px;
-  }
+
 
   border-radius: var(--bor-radius);
 
