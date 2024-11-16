@@ -1,0 +1,148 @@
+@import '../../styles/var.scss';
+@import '../../styles/mixins.scss';
+
+.sign_in__section {
+  @include flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background: var(--bg-main);
+}
+
+.form__wraper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  padding: 3rem;
+
+  border: 1px solid var(--bg-border);
+  border-radius: var(--bor-radius);
+  background: var(--foot-bg);
+}
+
+.form__head {
+  text-align: center;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 1.41176;
+  margin-bottom: 0.5rem;
+}
+
+.text {
+  font-size: 13px;
+  opacity: 0.65;
+  font-weight: 400;
+  line-height: 1.38462;
+}
+
+.decorative_text {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+    width: 120px;
+    height: 1px;
+    background-color: var(--bg-border);
+  }
+
+  &::after {
+    left: 0;
+  }
+  &::before {
+    right: 0;
+  }
+}
+
+//form
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+
+  &__label {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.38462;
+  }
+
+  &__input {
+    border-radius: 6px;
+    border: 1px solid var(--bg-border);
+    padding: 0.4rem;
+    font-size: 13px;
+
+    font-weight: 400;
+    line-height: 1.38462;
+    background: #181818;
+
+    margin-bottom: 1rem;
+
+    &:hover {
+      border: 1px solid #565656;
+    }
+
+    &:focus {
+      border: 1px solid #565656;
+      outline: 3px solid #333333;
+      outline-offset: 0;
+    }
+  }
+
+  &__btn {
+    @include transition;
+    color: var(--btn-c-white);
+    background: var(--btn-bg-white);
+    border-radius: var(--bor-radius);
+
+    padding: 0.5rem;
+
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.38462;
+
+    &:hover {
+      background-color: var(--btn-g-h-white);
+    }
+  }
+}
+
+//footer
+.sign_in__footer {
+  position: absolute;
+  background-origin: padding-box;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  @include flex;
+  gap: 0.3rem;
+  padding: 1rem;
+  background: var(--bg-main);
+  border-radius: 0 0 var(--bor-radius) var(--bor-radius);
+}
+
+.link {
+  font-size: 13px;
+
+  font-weight: 500;
+  line-height: 1.38462;
+  @include transition;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,10 +1,11 @@
 import { Outlet } from 'react-router-dom';
+import GoBack from '../components/GoBack/GoBack';
 import Footer from '../components/Footer/Footer';
 
 const AppLayout = () => {
   return (
     <>
-      <h1>Autorization</h1>
+      <GoBack />
       <Outlet />
       <Footer />
     </>
