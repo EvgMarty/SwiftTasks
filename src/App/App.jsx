@@ -5,8 +5,8 @@ import AppLayout from '../layouts/AppLayout';
 import styles from './App.module.scss';
 import NotFound from '../pages/NotFound/NotFound';
 import Main from '../pages/Main/Main';
-import SignUp from '../pages/SognUp/SignUp';
-import SignIn from '../pages/SignIn/SignIn';
+import SignUp from '../pages/Auth/SignUp';
+import SignIn from '../pages/Auth/SignIn';
 
 function App() {
   return (

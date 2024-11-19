@@ -1,7 +1,7 @@
 @import '../../styles/var.scss';
 @import '../../styles/mixins.scss';
 
-.btnLink {
+.btnMain {
   @include flex;
   @include transition;
   padding: 7px 12px;
@@ -9,9 +9,9 @@
 
   border-radius: var(--bor-radius);
 
-  font-family: var(--ff-sora);
-  font-size: clamp(0.75rem, 0.7rem + 0.25vw, 1rem);
-  line-height: 1.25rem;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.38462;
 
   color: var(--btn-c-black) !important;
   background-color: var(--btn-bg-black);
@@ -32,7 +32,8 @@
   }
 }
 
-.gradient {
+.black__white {
+  color: var(--tc-gray) !important;
   &:hover {
     color: var(--btn-c-white) !important;
     background-color: var(--btn-bg-white);

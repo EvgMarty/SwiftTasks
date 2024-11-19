@@ -1,7 +1,7 @@
 @import '../../styles/var.scss';
 @import '../../styles/mixins.scss';
 
-.sign_in__section {
+.auth__section {
   @include flex;
   flex-direction: column;
   height: 100vh;
@@ -13,7 +13,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 
   padding: 3rem;
 
@@ -102,47 +102,10 @@
       outline-offset: 0;
     }
   }
-
-  &__btn {
-    @include transition;
-    color: var(--btn-c-white);
-    background: var(--btn-bg-white);
-    border-radius: var(--bor-radius);
-
-    padding: 0.5rem;
-
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.38462;
-
-    &:hover {
-      background-color: var(--btn-g-h-white);
-    }
-  }
 }
 
-//footer
-.sign_in__footer {
-  position: absolute;
-  background-origin: padding-box;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  @include flex;
-  gap: 0.3rem;
-  padding: 1rem;
-  background: var(--bg-main);
-  border-radius: 0 0 var(--bor-radius) var(--bor-radius);
-}
-
-.link {
-  font-size: 13px;
-
-  font-weight: 500;
-  line-height: 1.38462;
-  @include transition;
-
-  &:hover {
-    text-decoration: underline;
-  }
+.icon {
+  width: 20px;
+  height: 20px;
+  opacity: 1;
 }
