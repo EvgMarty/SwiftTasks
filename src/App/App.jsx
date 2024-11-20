@@ -7,6 +7,7 @@ import NotFound from '../pages/NotFound/NotFound';
 import Main from '../pages/Main/Main';
 import SignUp from '../pages/Auth/SignUp';
 import SignIn from '../pages/Auth/SignIn';
+import SwiftApp from '../pages/SwiftApp/SwiftApp';
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
             <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
             <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
           </Route>
-          <Route path={ROUTES.APP} element={<AppLayout />}></Route>
+          <Route path={ROUTES.APP} element={<AppLayout />}>
+            <Route index element={<SwiftApp />} />
+          </Route>
           <Route path={ROUTES.NOTFOUND} element={<NotFound />} />
         </Routes>
       </main>

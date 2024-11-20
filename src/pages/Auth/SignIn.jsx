@@ -1,3 +1,8 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../store/slices/userSlice';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { FcGoogle } from 'react-icons/fc';
 import { ROUTES } from '../../routes/routes';
 import AuthFooter from '../../components/AuthFooter/AuthFooter';
@@ -5,6 +10,28 @@ import ButtonMain from '../../UI/ButtonMain/ButtonMain';
 import styles from './Auth.module.scss';
 
 const SignIn = () => {
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogin = (email, password) => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        const newUser = {
+          email: user.email,
+          id: user.uid,
+          token: user.accessToken,
+        };
+        dispatch(setUser(newUser));
+        navigate('/app');
+      })
+      .catch((error) => {
+        console.error('Registration error:', error.message);
+      });
+  };
+
   return (
     <section className={styles.auth__section}>
       <div className={styles.form__wraper}>
@@ -24,8 +51,30 @@ const SignIn = () => {
           <label className={styles.form__label} htmlFor="email">
             Email address
           </label>
-          <input className={styles.form__input} id="email" type="emain" />
-          <ButtonMain variant="white" type="button">
+          <input
+            className={styles.form__input}
+            id="email"
+            type="emain"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <label className={styles.form__label} htmlFor="pass">
+            Password
+          </label>
+          <input
+            className={styles.form__input}
+            id="pass"
+            type="password"
+            value={pass}
+            onChange={(e) => setPass(e.target.value)}
+          />
+
+          <ButtonMain
+            variant="white"
+            type="button"
+            onClick={() => handleLogin(email, pass)}
+          >
             Continue
           </ButtonMain>
         </form>
