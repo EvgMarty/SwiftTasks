@@ -71,7 +71,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1.5rem;
   margin-bottom: 3rem;
 
   &__label {
@@ -90,8 +90,6 @@
     line-height: 1.38462;
     background: #181818;
 
-    margin-bottom: 1rem;
-
     &:hover {
       border: 1px solid #565656;
     }
@@ -101,11 +99,34 @@
       outline: 3px solid #333333;
       outline-offset: 0;
     }
+
+    &.valid {
+      border: 1px solid var(--tc-valid);
+
+      &:focus {
+        outline: 3px solid #22c54341;
+        outline-offset: 0;
+      }
+    }
+
+    &.invalid {
+      border: 1px solid var(--tc-error);
+
+      &:focus {
+        outline: 3px solid #e5424251;
+        outline-offset: 0;
+      }
+    }
   }
 }
 
-.icon {
-  width: 20px;
-  height: 20px;
-  opacity: 1;
+.input__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
+
+
+
+
+

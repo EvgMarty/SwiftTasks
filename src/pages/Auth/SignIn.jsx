@@ -19,12 +19,12 @@ const SignIn = () => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
-        const newUser = {
+        const authUser = {
           email: user.email,
           id: user.uid,
           token: user.accessToken,
         };
-        dispatch(setUser(newUser));
+        dispatch(setUser(authUser));
         navigate('/app');
       })
       .catch((error) => {

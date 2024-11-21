@@ -5,9 +5,11 @@ import { setUser } from '../../store/slices/userSlice';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { FcGoogle } from 'react-icons/fc';
 import { ROUTES } from '../../routes/routes';
+
 import AuthFooter from '../../components/AuthFooter/AuthFooter';
 import ButtonMain from '../../UI/ButtonMain/ButtonMain';
 import styles from './Auth.module.scss';
+import ValidationMessage from '../../components/ValidationMessage/ValidationMessage';
 
 const SignUp = () => {
   const [userName, setUserName] = useState('');
@@ -15,6 +17,9 @@ const SignUp = () => {
   const [pass, setPass] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  //Validation
+  const isValid = pass.length >= 8;
 
   const handleRegister = (email, password, userName) => {
     const auth = getAuth();
@@ -49,6 +54,7 @@ const SignUp = () => {
         <div className={styles.decorative_text}>
           <p className={styles.text}>or</p>
         </div>
+
         <form
           className={styles.form}
           onSubmit={(e) => {
@@ -56,40 +62,54 @@ const SignUp = () => {
             handleRegister(email, pass, userName);
           }}
         >
-          <label className={styles.form__label} htmlFor="userName">
-            Username
-          </label>
-          <input
-            className={styles.form__input}
-            id="userName"
-            type="text"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-          />
-          <label className={styles.form__label} htmlFor="email">
-            Email address
-          </label>
-          <input
-            className={styles.form__input}
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <label className={styles.form__label} htmlFor="password">
-            Password
-          </label>
-          <input
-            className={styles.form__input}
-            id="password"
-            type="password"
-            value={pass}
-            onChange={(e) => setPass(e.target.value)}
-          />
+          <div className={styles.input__group}>
+            <label className={styles.form__label} htmlFor="userName">
+              Username
+            </label>
+            <input
+              className={styles.form__input}
+              id="userName"
+              type="text"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+            />
+          </div>
+
+          <div className={styles.input__group}>
+            <label className={styles.form__label} htmlFor="email">
+              Email address
+            </label>
+            <input
+              className={styles.form__input}
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          <div className={styles.input__group}>
+            <label className={styles.form__label} htmlFor="password">
+              Password
+            </label>
+            <input
+              className={`${styles.form__input} ${
+                isValid ? styles.valid : styles.invalid
+              }`}
+              id="password"
+              type="password"
+              value={pass}
+              onChange={(e) => setPass(e.target.value)}
+            />
+
+            <ValidationMessage isValid={isValid} password={pass} />
+          </div>
+
           <ButtonMain variant="white" type="submit">
             Continue
           </ButtonMain>
         </form>
+
         <AuthFooter
           text="Already have an account? "
           namePage="Sign In"
