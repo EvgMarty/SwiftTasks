@@ -20,6 +20,14 @@
   &:hover {
     background-color: var(--btn-g-h-black);
   }
+
+  &:disabled {
+    background-color: var(--btn-disabled-bg); // Светло-серый фон
+    color: var(--btn-disabled-text); // Тусклый серый текст
+    border: 1px solid var(--btn-disabled-border); // Серый бордер
+    cursor: not-allowed; // Курсор недоступности
+    opacity: 0.6; // Уменьшаем контрастность
+  }
 }
 
 .white {
@@ -30,6 +38,12 @@
   &:hover {
     background-color: var(--btn-g-h-white);
   }
+
+  &:disabled {
+    background-color: var(--btn-disabled-bg);
+    color: var(--btn-disabled-text);
+    border: 1px solid var(--btn-disabled-border);
+  }
 }
 
 .black__white {
@@ -37,5 +51,11 @@
   &:hover {
     color: var(--btn-c-white) !important;
     background-color: var(--btn-bg-white);
+  }
+
+  &:disabled {
+    background-color: var(--btn-disabled-bg);
+    color: var(--btn-disabled-text);
+    border: 1px solid var(--btn-disabled-border);
   }
 }

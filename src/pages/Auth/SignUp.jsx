@@ -19,24 +19,44 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   //Validation
+  const isEmpty = pass.length === 0;
   const isValid = pass.length >= 8;
+  const [isTouched, setIsTouched] = useState(false);
 
-  const handleRegister = (email, password, userName) => {
+  const handleRegister = async (email, password, userName) => {
+    if (!email || !password) {
+      console.error('Email and password are required.');
+      return;
+    }
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        const newUser = {
-          email: user.email,
-          id: user.uid,
-          token: user.accessToken,
-          name: userName,
-        };
-        dispatch(setUser(newUser));
-        navigate('/sign-in');
-      })
-      .catch((error) => {
-        console.error('Registration error:', error.message);
-      });
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const { user } = userCredential;
+
+      const newUser = {
+        email: user.email,
+        id: user.uid,
+        token: user.stsTokenManager.accessToken,
+        name: userName,
+      };
+
+      dispatch(setUser(newUser));
+      navigate(ROUTES.SIGN_IN);
+    } catch (error) {
+      console.error('Registration error:', error.code, error.message);
+
+      if (error.code === 'auth/weak-password') {
+        alert('Password should be at least 6 characters.');
+      } else if (error.code === 'auth/email-already-in-use') {
+        alert('This email is already registered.');
+      } else {
+        alert('An error occurred. Please try again.');
+      }
+    }
   };
 
   return (
@@ -94,18 +114,27 @@ const SignUp = () => {
             </label>
             <input
               className={`${styles.form__input} ${
-                isValid ? styles.valid : styles.invalid
+                isTouched && !isEmpty
+                  ? isValid
+                    ? styles.valid
+                    : styles.invalid
+                  : ''
               }`}
               id="password"
               type="password"
               value={pass}
-              onChange={(e) => setPass(e.target.value)}
+              onChange={(e) => {
+                setPass(e.target.value);
+                if (!isTouched) setIsTouched(true);
+              }}
             />
 
-            <ValidationMessage isValid={isValid} password={pass} />
+            {isTouched && (
+              <ValidationMessage isValid={isValid} isEmpty={isEmpty} />
+            )}
           </div>
 
-          <ButtonMain variant="white" type="submit">
+          <ButtonMain variant="white" type="submit" disabled={!isValid}>
             Continue
           </ButtonMain>
         </form>

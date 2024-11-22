@@ -1,19 +1,22 @@
 import { MdExpandCircleDown, MdError } from 'react-icons/md';
 import styles from './ValidationMessage.module.scss';
 
-const ValidationMessage = ({ isValid, password }) => {
-  const isEmpty = password.length === 0;
-
-  if (isEmpty) return null;
-  
+const ValidationMessage = ({ isValid, isEmpty }) => {
   return (
     <div className={styles.validation}>
-      {isValid ? (
+      {isEmpty ? (
+        // defolt
+        <span className={styles.default}>
+          Your password must contain 8 or more characters.
+        </span>
+      ) : isValid ? (
+        // success massage
         <>
           <MdExpandCircleDown className={styles.icon__info} />
           <span>Your password meets all the necessary requirements.</span>
         </>
       ) : (
+        //  invalid massage
         <>
           <MdError className={styles.icon__error} />
           <span className={styles.error}>

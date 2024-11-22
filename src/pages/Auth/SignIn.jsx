@@ -22,7 +22,7 @@ const SignIn = () => {
         const authUser = {
           email: user.email,
           id: user.uid,
-          token: user.accessToken,
+          token: user.stsTokenManager.accessToken,
         };
         dispatch(setUser(authUser));
         navigate('/app');
@@ -48,28 +48,31 @@ const SignIn = () => {
           <p className={styles.text}>or</p>
         </div>
         <form className={styles.form}>
-          <label className={styles.form__label} htmlFor="email">
-            Email address
-          </label>
-          <input
-            className={styles.form__input}
-            id="email"
-            type="emain"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <div className={styles.input__group}>
+            <label className={styles.form__label} htmlFor="email">
+              Email address
+            </label>
+            <input
+              className={styles.form__input}
+              id="email"
+              type="emain"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-          <label className={styles.form__label} htmlFor="pass">
-            Password
-          </label>
-          <input
-            className={styles.form__input}
-            id="pass"
-            type="password"
-            value={pass}
-            onChange={(e) => setPass(e.target.value)}
-          />
-
+          <div className={styles.input__group}>
+            <label className={styles.form__label} htmlFor="pass">
+              Password
+            </label>
+            <input
+              className={styles.form__input}
+              id="pass"
+              type="password"
+              value={pass}
+              onChange={(e) => setPass(e.target.value)}
+            />
+          </div>
           <ButtonMain
             variant="white"
             type="button"

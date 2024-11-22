@@ -1,13 +1,10 @@
-@import '../../styles/var.scss';
-@import '../../styles/mixins.scss';
-
 .validation {
   display: flex;
   align-items: center;
   gap: 0.2rem;
   font-size: 11px;
-  color: var(--tc-gray);
   margin-top: 0.2rem;
+
 
   .icon__info {
     width: 15px;
@@ -15,17 +12,25 @@
     color: var(--tc-valid);
   }
 
+  
   .icon__error {
     width: 15px;
     height: 15px;
     color: var(--tc-error);
   }
 
+  
   .valid {
     color: var(--tc-valid);
   }
 
-  .invalid {
+
+  .error {
     color: var(--tc-error);
+  }
+
+
+  .default {
+    color: var(--tc-gray); 
   }
 }
