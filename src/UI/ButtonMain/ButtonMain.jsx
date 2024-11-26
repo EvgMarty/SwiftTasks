@@ -7,16 +7,20 @@ const ButtonMain = ({
   type,
   variant,
   disabled = false,
+  isLoading = false,
 }) => {
   return (
     <button
-      className={`${style.btnMain} ${style[variant]}`}
+      className={`${style.btnMain} ${style[variant]} ${
+        isLoading ? style.loading : ''
+      }`}
       type={type}
       title={title}
-      disabled={disabled}
+      disabled={disabled || isLoading}
       onClick={onClick}
     >
-      {children}
+      {isLoading && <span className={style.spinner}></span>}
+      {!isLoading && children}
     </button>
   );
 };

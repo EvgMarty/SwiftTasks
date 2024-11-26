@@ -12,24 +12,32 @@ import styles from './Auth.module.scss';
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogin = (email, password) => {
+  const isFormValid = email.trim() !== '' && pass.trim() !== '';
+
+  const handleLogin = async (email, password) => {
+    if (!isFormValid) return;
+
+    setIsLoading(true);
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        const authUser = {
-          email: user.email,
-          id: user.uid,
-          token: user.stsTokenManager.accessToken,
-        };
-        dispatch(setUser(authUser));
-        navigate('/app');
-      })
-      .catch((error) => {
-        console.error('Registration error:', error.message);
-      });
+    try {
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+      const authUser = {
+        email: user.email,
+        id: user.uid,
+        token: user.stsTokenManager.accessToken,
+      };
+      dispatch(setUser(authUser));
+      navigate('/app');
+    } catch (error) {
+      console.error('Login error:', error.message);
+      alert('Invalid credentials. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -77,6 +85,8 @@ const SignIn = () => {
             variant="white"
             type="button"
             onClick={() => handleLogin(email, pass)}
+            disabled={!isFormValid || isLoading}
+            isLoading={isLoading}
           >
             Continue
           </ButtonMain>

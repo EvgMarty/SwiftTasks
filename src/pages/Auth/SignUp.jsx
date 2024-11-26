@@ -18,6 +18,9 @@ const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // loading
+  const [isLoading, setIsLoading] = useState(false);
+
   //Validation
   const isEmpty = pass.length === 0;
   const isValid = pass.length >= 8;
@@ -28,6 +31,7 @@ const SignUp = () => {
       console.error('Email and password are required.');
       return;
     }
+    setIsLoading(true); // turn on isLoading
     const auth = getAuth();
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -56,6 +60,8 @@ const SignUp = () => {
       } else {
         alert('An error occurred. Please try again.');
       }
+    } finally {
+      setIsLoading(false); // turn off isLoading
     }
   };
 
@@ -134,7 +140,12 @@ const SignUp = () => {
             )}
           </div>
 
-          <ButtonMain variant="white" type="submit" disabled={!isValid}>
+          <ButtonMain
+            variant="white"
+            type="submit"
+            disabled={!isValid || isLoading}
+            isLoading={isLoading}
+          >
             Continue
           </ButtonMain>
         </form>
