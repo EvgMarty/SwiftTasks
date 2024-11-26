@@ -10,6 +10,7 @@ import AuthFooter from '../../components/AuthFooter/AuthFooter';
 import ButtonMain from '../../UI/ButtonMain/ButtonMain';
 import styles from './Auth.module.scss';
 import ValidationMessage from '../../components/ValidationMessage/ValidationMessage';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 const SignUp = () => {
   const [userName, setUserName] = useState('');
@@ -25,6 +26,7 @@ const SignUp = () => {
   const isEmpty = pass.length === 0;
   const isValid = pass.length >= 8;
   const [isTouched, setIsTouched] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleRegister = async (email, password, userName) => {
     if (!email || !password) {
@@ -53,12 +55,18 @@ const SignUp = () => {
     } catch (error) {
       console.error('Registration error:', error.code, error.message);
 
-      if (error.code === 'auth/weak-password') {
-        alert('Password should be at least 6 characters.');
-      } else if (error.code === 'auth/email-already-in-use') {
-        alert('This email is already registered.');
-      } else {
-        alert('An error occurred. Please try again.');
+      switch (error.code) {
+        case 'auth/weak-password':
+          setErrorMessage('Password should be at least 6 characters.');
+          break;
+        case 'auth/email-already-in-use':
+          setErrorMessage('This email is already registered.');
+          break;
+        case 'auth/invalid-email':
+          setErrorMessage('Invalid email format.');
+          break;
+        default:
+          setErrorMessage('An error occurred. Please try again.');
       }
     } finally {
       setIsLoading(false); // turn off isLoading
@@ -139,6 +147,8 @@ const SignUp = () => {
               <ValidationMessage isValid={isValid} isEmpty={isEmpty} />
             )}
           </div>
+
+          <ErrorMessage message={errorMessage} />
 
           <ButtonMain
             variant="white"

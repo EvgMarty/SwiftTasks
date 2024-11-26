@@ -7,11 +7,13 @@ import { FcGoogle } from 'react-icons/fc';
 import { ROUTES } from '../../routes/routes';
 import AuthFooter from '../../components/AuthFooter/AuthFooter';
 import ButtonMain from '../../UI/ButtonMain/ButtonMain';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import styles from './Auth.module.scss';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -33,8 +35,27 @@ const SignIn = () => {
       dispatch(setUser(authUser));
       navigate('/app');
     } catch (error) {
-      console.error('Login error:', error.message);
-      alert('Invalid credentials. Please try again.');
+      console.error('Login error:', error.code, error.message);
+
+      switch (error.code) {
+        case 'auth/user-not-found':
+          setErrorMessage('User not found. Please register first.');
+          break;
+        case 'auth/wrong-password':
+          setErrorMessage('Incorrect password. Please try again.');
+          break;
+        case 'auth/invalid-email':
+          setErrorMessage('Invalid email format.');
+          break;
+        case 'auth/user-disabled':
+          setErrorMessage('Your account has been disabled.');
+          break;
+        case 'auth/too-many-requests':
+          setErrorMessage('Too many login attempts. Please try again later.');
+          break;
+        default:
+          setErrorMessage('An unknown error occurred. Please try again.');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -81,6 +102,7 @@ const SignIn = () => {
               onChange={(e) => setPass(e.target.value)}
             />
           </div>
+          <ErrorMessage message={errorMessage} />
           <ButtonMain
             variant="white"
             type="button"
