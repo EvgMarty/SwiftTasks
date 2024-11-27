@@ -27,7 +27,7 @@ const SwiftPresentation = () => {
         Free tool for managing
         <span className={styles.text__gray}> plans and projects.</span>
       </p>
-      <ButtonLink link={ROUTES.SIGN_UP} variant="gradient">
+      <ButtonLink link={ROUTES.APP} variant="gradient">
         Get Started <FiArrowUpRight className={styles.icon} />
       </ButtonLink>
     </section>

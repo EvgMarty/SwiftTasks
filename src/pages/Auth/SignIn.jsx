@@ -2,7 +2,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/slices/userSlice';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
 import { FcGoogle } from 'react-icons/fc';
 import { ROUTES } from '../../routes/routes';
 import AuthFooter from '../../components/AuthFooter/AuthFooter';
@@ -61,6 +66,31 @@ const SignIn = () => {
     }
   };
 
+  const handleGoogleLogin = async () => {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+
+    setIsLoading(true);
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      const authUser = {
+        email: user.email,
+        id: user.uid,
+        token: user.accessToken,
+      };
+
+      dispatch(setUser(authUser));
+      navigate('/app');
+    } catch (error) {
+      console.error('Google Login Error:', error);
+      setErrorMessage('Google login failed. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <section className={styles.auth__section}>
       <div className={styles.form__wraper}>
@@ -70,7 +100,11 @@ const SignIn = () => {
             Welcome back! Please sign in to continue
           </p>
         </div>
-        <ButtonMain variant="black__white">
+        <ButtonMain
+          variant="black__white"
+          onClick={handleGoogleLogin}
+          isLoading={isLoading}
+        >
           <FcGoogle className={styles.icon} /> Continue with Googl
         </ButtonMain>
         <div className={styles.decorative_text}>
