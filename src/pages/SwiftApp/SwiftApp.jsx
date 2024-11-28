@@ -8,10 +8,11 @@ const SwiftApp = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   console.log(user);
 
   const handleSignOut = () => {
+    localStorage.removeItem('user');
     dispatch(removeUser());
     navigate('/');
   };

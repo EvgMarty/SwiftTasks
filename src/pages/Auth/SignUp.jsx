@@ -18,13 +18,11 @@ import ValidationMessage from '../../components/ValidationMessage/ValidationMess
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 const SignUp = () => {
-  const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // loading
   const [isLoading, setIsLoading] = useState(false);
 
   //Validation
@@ -33,12 +31,12 @@ const SignUp = () => {
   const [isTouched, setIsTouched] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleRegister = async (email, password, userName) => {
+  const handleRegister = async (email, password) => {
     if (!email || !password) {
       console.error('Email and password are required.');
       return;
     }
-    setIsLoading(true); // turn on isLoading
+    setIsLoading(true);
     const auth = getAuth();
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -52,9 +50,9 @@ const SignUp = () => {
         email: user.email,
         id: user.uid,
         token: user.stsTokenManager.accessToken,
-        name: userName,
       };
 
+      localStorage.setItem('user', JSON.stringify(newUser));
       dispatch(setUser(newUser));
       navigate(ROUTES.SIGN_IN);
     } catch (error) {
@@ -74,7 +72,7 @@ const SignUp = () => {
           setErrorMessage('An error occurred. Please try again.');
       }
     } finally {
-      setIsLoading(false); // turn off isLoading
+      setIsLoading(false);
     }
   };
 
@@ -93,6 +91,7 @@ const SignUp = () => {
         token: user.accessToken,
       };
 
+      localStorage.setItem('user', JSON.stringify(authUser));
       dispatch(setUser(authUser));
       navigate('/app');
     } catch (error) {
@@ -127,22 +126,9 @@ const SignUp = () => {
           className={styles.form}
           onSubmit={(e) => {
             e.preventDefault();
-            handleRegister(email, pass, userName);
+            handleRegister(email, pass);
           }}
         >
-          <div className={styles.input__group}>
-            <label className={styles.form__label} htmlFor="userName">
-              Username
-            </label>
-            <input
-              className={styles.form__input}
-              id="userName"
-              type="text"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-            />
-          </div>
-
           <div className={styles.input__group}>
             <label className={styles.form__label} htmlFor="email">
               Email address

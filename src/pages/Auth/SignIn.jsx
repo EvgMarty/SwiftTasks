@@ -37,6 +37,8 @@ const SignIn = () => {
         id: user.uid,
         token: user.stsTokenManager.accessToken,
       };
+
+      localStorage.setItem('user', JSON.stringify(authUser));
       dispatch(setUser(authUser));
       navigate('/app');
     } catch (error) {
@@ -81,6 +83,7 @@ const SignIn = () => {
         token: user.accessToken,
       };
 
+      localStorage.setItem('user', JSON.stringify(authUser));
       dispatch(setUser(authUser));
       navigate('/app');
     } catch (error) {
