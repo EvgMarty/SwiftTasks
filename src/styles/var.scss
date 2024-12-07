@@ -1,5 +1,5 @@
 :root {
-  /* Light mode */
+  /* Lending colors*/
   --tc-main: #f8f9fa;
   --tc-gray: #9d9d9d;
   --tc-accent: #219ebc;
@@ -24,19 +24,17 @@
   --btn-bg-white: #f8f9fa;
   --btn-g-h-white: #d2d2d2;
 
-  --btn-disabled-bg: #e0e0e0; // Светло-серый фон
-  --btn-disabled-text: #a0a0a0; // Тусклый текст
-  --btn-disabled-border: #d0d0d0; // Серый бордер
+  --btn-disabled-bg: #e0e0e0; 
+  --btn-disabled-text: #a0a0a0; 
+  --btn-disabled-border: #d0d0d0; 
 
   --bor-radius: 0.75rem;
   --bg-border: #262626;
-  // adaptation
-  --mobile: 480;
-  --tablet-t: 768;
-  --large-desktop: 1200;
+
+  /* Light mode APP */
 }
 
-// /* Dark mode */
+// /* Dark mode APP */
 // [data-theme='dark'] {
 
 // }

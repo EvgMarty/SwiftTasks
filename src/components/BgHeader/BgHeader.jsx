@@ -8,9 +8,10 @@ const BgHeader = () => {
       <video
         className={styles.video}
         src={backgroundVideo}
-        autoPlay 
-        muted 
-        loop 
+        autoPlay
+        playsInline
+        muted
+        loop
         width="100%"
         height="100%"
       ></video>
