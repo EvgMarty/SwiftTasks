@@ -11,6 +11,11 @@
 
   background-color: var(--foot-bg);
   border-top: 1px solid var(--bg-border);
+
+  @media (max-width: 450px) {
+    gap: 2rem;
+
+  }
 }
 
 .wrapper {
@@ -37,6 +42,7 @@
 .link__group {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
 
   @media (max-width: 1024px) {
     grid-template-columns: repeat(4, 1fr);
@@ -44,6 +50,10 @@
 
   @media (max-width: 600px) {
     grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 450px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 }
 
@@ -80,4 +90,8 @@
 .rights {
   opacity: 0.75;
   font-size: 14px;
+
+  @media (max-width: 450px) {
+   text-align: center;
+  }
 }

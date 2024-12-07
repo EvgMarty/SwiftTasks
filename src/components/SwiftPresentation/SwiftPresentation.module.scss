@@ -28,6 +28,8 @@
   @media (max-width: 700px) {
     top: 15rem;
   }
+
+ 
 }
 
 .text {
@@ -45,11 +47,15 @@
 
 .sloganContainer {
   position: relative;
-  height: 4.7rem;
+  height: 5.2rem;
   overflow: hidden;
 
   @media (max-width: 700px) {
-    height: 3.5rem;
+    height: 3.9rem;
+  }
+
+  @media (max-width: 450px) {
+    height: 7.5rem;
   }
 }
 
@@ -59,6 +65,12 @@
   line-height: 1;
   color: var(--tc-accent);
   animation: slideUp 4s ease-in infinite;
+
+  @media (max-width: 450px) {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+  }
 }
 
 @keyframes slideUp {
